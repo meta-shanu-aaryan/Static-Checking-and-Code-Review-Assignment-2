@@ -22,19 +22,23 @@ class FCFS {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
+        return completeTime;
     }
 
     // To calculate Turn Around Time
     public ArrayList<Integer> turnAroundTime(int[][] process) {
 
-        ArrayList<Integer> completionTime = completionTime(process);
-
         ArrayList<Integer> turnAroundTimeList = new ArrayList<Integer>();
-        int processNum = process.length;
+        try {
+            ArrayList<Integer> completionTime = completionTime(process);
+            int processNum = process.length;
 
-        for (int i = 0; i < processNum; i++) {
-            turnAroundTimeList.add(completionTime.get(i) - process[i][0]);
+            for (int i = 0; i < processNum; i++) {
+                turnAroundTimeList.add(completionTime.get(i) - process[i][0]);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         return turnAroundTimeList;
@@ -43,12 +47,17 @@ class FCFS {
     // To calculate waiting time
     public ArrayList<Integer> waitTime(int[][] process) {
 
-        ArrayList<Integer> turnAroundTimeLiist = turnAroundTime(process);
         ArrayList<Integer> waitingList = new ArrayList<Integer>();
-        int processNum = process.length;
+        try {
+            ArrayList<Integer> turnAroundTimeLiist = turnAroundTime(process);
+            int processNum = process.length;
 
-        for (int i = 0; i < processNum; i++) {
-            waitingList.add(turnAroundTimeLiist.get(i) - process[i][1]);
+            for (int i = 0; i < processNum; i++) {
+                waitingList.add(turnAroundTimeLiist.get(i) - process[i][1]);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         return waitingList;
@@ -56,29 +65,40 @@ class FCFS {
 
     // To calculate Average Waiting Time
     public float averageWaitingTime(int[][] process) {
-        ArrayList<Integer> waitingList = waitTime(process);
-        int waitigSum = 0;
-        int processNumber = waitingList.size();
+        try {
 
-        for (int i = 0; i < processNumber; i++) {
-            waitigSum += waitingList.get(i);
+            ArrayList<Integer> waitingList = waitTime(process);
+            int waitigSum = 0;
+            int processNumber = waitingList.size();
+
+            for (int i = 0; i < processNumber; i++) {
+                waitigSum += waitingList.get(i);
+            }
+            return waitigSum / processNumber;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
         }
 
-        return waitigSum / processNumber;
     }
 
     // To calculate average waiting time
     public int maxWaitingTime(int[][] process) {
-        ArrayList<Integer> waitingList = waitTime(process);
-        int max = waitingList.get(0);
+        try {
+            ArrayList<Integer> waitingList = waitTime(process);
+            int max = waitingList.get(0);
 
-        for (int i = 1; i < waitingList.size(); i++) {
-            if (waitingList.get(i) > max) {
-                max = waitingList.get(i);
+            for (int i = 1; i < waitingList.size(); i++) {
+                if (waitingList.get(i) > max) {
+                    max = waitingList.get(i);
+                }
             }
-        }
 
-        return max;
+            return max;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
     }
 }
 
