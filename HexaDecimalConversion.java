@@ -69,15 +69,11 @@ class HexCalc {
 
     // To compare with equal operator
     public boolean equals(String a, String b) {
-        try {
-            int c = calculateDecimal(a);
-            int d = calculateDecimal(b);
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        int c = calculateDecimal(a);
+        int d = calculateDecimal(b);
+
         return (c == d);
-
     }
 
     // To compare with greater operator
